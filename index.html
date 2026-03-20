@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrightMind Coaching Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#071a0f;
+  --bg2:#0b2416;
+  --bg3:#0e2c1c;
+  --green:#1a5c34;
+  --accent:#4ade80;
+  --accent2:#86efac;
+  --gold:#f5c842;
+  --white:#ffffff;
+  --text:#d4edd9;
+  --muted:#7aad8a;
+  --card:rgba(255,255,255,0.05);
+  --border:rgba(74,222,128,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Roboto',sans-serif;background:var(--bg1);color:var(--text);overflow-x:hidden;}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--bg1);}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px;}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:999;background:rgba(7,26,15,0.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:13px 5%;display:flex;align-items:center;justify-content:space-between;}
+.logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-img{width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);animation:glowG 3s ease-in-out infinite;}
+@keyframes glowG{0%,100%{box-shadow:0 0 6px 2px var(--accent);}50%{box-shadow:0 0 20px 6px var(--accent2);}}
+.logo-text{font-family:'Roboto Slab',serif;font-size:1.45rem;font-weight:900;color:var(--white);}
+.logo-text span{color:var(--accent);}
+.nav-links{display:flex;gap:26px;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.88rem;font-weight:500;transition:color .25s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-cta{background:var(--accent)!important;color:#071a0f!important;padding:10px 22px;border-radius:6px;font-weight:700!important;}
+.nav-cta:hover{background:var(--accent2)!important;transform:translateY(-1px);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
+.hamburger span{width:24px;height:2px;background:var(--white);border-radius:2px;display:block;}
+.mobile-menu{display:none;position:fixed;top:78px;left:0;right:0;background:var(--bg2);padding:20px 5%;border-bottom:1px solid var(--border);z-index:998;}
+.mobile-menu.open{display:block;}
+.mobile-menu a{display:block;color:var(--text);text-decoration:none;padding:12px 0;border-bottom:1px solid var(--border);font-weight:500;}
+
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(135deg,#040f08 0%,#071a0f 50%,#0b2416 100%);display:flex;align-items:center;padding:110px 5% 70px;position:relative;overflow:hidden;}
+.hero-circles{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.hero-circles span{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(74,222,128,0.1) 0%,transparent 70%);}
+.hero-circles span:nth-child(1){width:700px;height:700px;top:-200px;right:-200px;animation:pulse 7s ease-in-out infinite;}
+.hero-circles span:nth-child(2){width:400px;height:400px;bottom:-150px;left:-100px;animation:pulse 9s ease-in-out infinite 2s;}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.6;}50%{transform:scale(1.15);opacity:1;}}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;width:100%;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.25);color:var(--accent);padding:8px 18px;border-radius:50px;font-size:0.8rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:22px;animation:fadeUp .8s ease both;}
+.hero h1{font-family:'Roboto Slab',serif;font-size:clamp(2.2rem,4vw,3.4rem);font-weight:900;line-height:1.15;color:var(--white);margin-bottom:18px;animation:fadeUp .9s ease .1s both;}
+.hero h1 em{color:var(--accent);font-style:normal;}
+.hero-sub{color:var(--muted);font-size:1rem;line-height:1.75;margin-bottom:12px;font-weight:300;animation:fadeUp .9s ease .2s both;}
+.hero-hindi{color:rgba(74,222,128,0.8);font-size:0.95rem;font-weight:500;margin-bottom:30px;font-style:italic;animation:fadeUp .9s ease .25s both;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .9s ease .3s both;}
+.btn-green{background:var(--accent);color:#071a0f;padding:14px 30px;border-radius:8px;font-weight:700;font-size:0.95rem;text-decoration:none;display:inline-block;transition:all .3s;}
+.btn-green:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 12px 30px rgba(74,222,128,.3);}
+.btn-outline{background:transparent;color:var(--white);padding:14px 30px;border-radius:8px;font-weight:600;font-size:0.95rem;text-decoration:none;display:inline-block;border:1.5px solid rgba(255,255,255,.2);transition:all .3s;}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+.hero-stats{display:flex;gap:32px;margin-top:44px;padding-top:36px;border-top:1px solid var(--border);animation:fadeUp .9s ease .4s both;}
+.stat-num{font-family:'Roboto Slab',serif;font-size:2.2rem;font-weight:900;color:var(--accent);line-height:1;}
+.stat-lbl{color:var(--muted);font-size:0.78rem;margin-top:4px;font-weight:500;}
+.hero-right{display:grid;grid-template-columns:1fr 1fr;gap:16px;animation:fadeUp 1s ease .2s both;}
+.hero-img-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:10px;transition:all .35s;}
+.hero-img-card:hover{transform:translateY(-8px) scale(1.03);border-color:rgba(74,222,128,.4);background:rgba(74,222,128,.06);}
+.hero-img-card img{width:90px;height:90px;object-fit:contain;animation:bounce 3s ease-in-out infinite;}
+.hero-img-card:nth-child(2) img{animation-delay:.5s;}
+.hero-img-card:nth-child(3) img{animation-delay:1s;}
+.hero-img-card:nth-child(4) img{animation-delay:1.5s;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.hero-img-card p{color:var(--muted);font-size:0.78rem;font-weight:500;text-align:center;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* SECTIONS */
+section{padding:80px 5%;}
+.sec-tag{display:inline-block;color:var(--accent);font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+.sec-title{font-family:'Roboto Slab',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:900;color:var(--white);line-height:1.2;margin-bottom:10px;}
+.sec-sub{color:var(--muted);font-size:0.95rem;line-height:1.75;max-width:520px;font-weight:300;}
+
+/* ABOUT */
+.about{background:var(--bg2);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin-top:40px;}
+.about-img-wrap{position:relative;}
+.about-main-img{width:100%;border-radius:20px;border:2px solid var(--border);object-fit:cover;height:300px;}
+.about-badge-img{position:absolute;bottom:-20px;right:-20px;width:90px;height:90px;border-radius:50%;border:3px solid var(--accent);object-fit:contain;background:var(--bg1);padding:8px;animation:bounce 4s ease-in-out infinite;}
+.about-point{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px;padding:16px;background:var(--card);border-radius:10px;border:1px solid var(--border);transition:.3s;}
+.about-point:hover{border-color:rgba(74,222,128,.3);background:rgba(74,222,128,.05);}
+.about-point-icon{font-size:1.5rem;flex-shrink:0;}
+.about-point h4{color:var(--white);font-size:0.92rem;font-weight:700;margin-bottom:4px;}
+.about-point p{color:var(--muted);font-size:0.83rem;line-height:1.6;}
+
+/* COURSES */
+.courses{background:var(--bg1);}
+.courses-hdr{text-align:center;margin-bottom:50px;}
+.courses-hdr .sec-sub{margin:0 auto;}
+.courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px;}
+.course-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;transition:all .35s;position:relative;overflow:hidden;}
+.course-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:.35s;}
+.course-card:hover{transform:translateY(-6px);border-color:rgba(74,222,128,.3);}
+.course-card:hover::after{transform:scaleX(1);}
+.c-icon{width:52px;height:52px;background:rgba(74,222,128,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:18px;border:1px solid rgba(74,222,128,.2);}
+.course-card h3{font-family:'Roboto Slab',serif;font-size:1.1rem;color:var(--white);margin-bottom:8px;}
+.course-card p{color:var(--muted);font-size:0.85rem;line-height:1.65;margin-bottom:14px;}
+.course-tag{display:inline-block;background:rgba(74,222,128,.12);color:var(--accent);padding:4px 12px;border-radius:50px;font-size:0.75rem;font-weight:700;}
+
+/* TEACHERS */
+.teachers{background:var(--bg2);}
+.teachers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px;margin-top:44px;}
+.teacher-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;text-align:center;transition:.35s;}
+.teacher-card:hover{transform:translateY(-5px);border-color:rgba(74,222,128,.35);background:rgba(74,222,128,.05);}
+.t-avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-family:'Roboto Slab',serif;font-size:1.8rem;font-weight:900;color:#071a0f;border:3px solid rgba(74,222,128,.3);}
+.teacher-card h3{color:var(--white);font-weight:700;font-size:0.95rem;margin-bottom:5px;}
+.t-sub{color:var(--accent);font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.t-exp{color:var(--muted);font-size:0.8rem;}
+
+/* FEES */
+.fees{background:var(--bg1);}
+.fees-hdr{text-align:center;margin-bottom:50px;}
+.fees-hdr .sec-sub{margin:0 auto;}
+.fees-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;max-width:880px;margin:0 auto;}
+.fee-card{background:var(--card);border:2px solid var(--border);border-radius:20px;padding:34px;position:relative;transition:.35s;}
+.fee-card:hover{transform:translateY(-5px);}
+.fee-card.hot{border-color:var(--accent);background:rgba(74,222,128,.05);}
+.hot-label{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--accent);color:#071a0f;padding:5px 18px;border-radius:50px;font-size:0.72rem;font-weight:700;white-space:nowrap;}
+.fee-card h3{font-family:'Roboto Slab',serif;color:var(--white);font-size:1.2rem;margin-bottom:8px;}
+.fee-price{font-family:'Roboto Slab',serif;font-size:2.6rem;font-weight:900;color:var(--accent);line-height:1;margin-bottom:4px;}
+.fee-per{color:var(--muted);font-size:0.82rem;margin-bottom:22px;}
+.fee-list{list-style:none;margin-bottom:26px;}
+.fee-list li{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:0.87rem;color:var(--text);}
+.fee-list li:last-child{border:none;}
+.fee-list li::before{content:'✓';color:var(--accent);font-weight:700;}
+.fee-btn{display:block;text-align:center;padding:13px;border-radius:8px;font-weight:700;text-decoration:none;font-size:0.9rem;transition:.3s;background:var(--bg3);color:var(--white);border:1px solid var(--border);}
+.fee-card.hot .fee-btn{background:var(--accent);color:#071a0f;border:none;}
+.fee-btn:hover{background:var(--accent);color:#071a0f;}
+
+/* RESULTS */
+.results{background:var(--bg2);text-align:center;}
+.results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;margin:44px 0 0;}
+.res-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px 20px;transition:.35s;}
+.res-card:hover{transform:translateY(-5px);border-color:rgba(74,222,128,.35);}
+.res-num{font-family:'Roboto Slab',serif;font-size:2.8rem;font-weight:900;color:var(--accent);line-height:1;}
+.res-lbl{color:var(--muted);font-size:0.83rem;margin-top:6px;}
+
+/* CONTACT */
+.contact{background:var(--bg3);}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:46px;}
+.c-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:24px;}
+.c-icon{width:44px;height:44px;flex-shrink:0;background:rgba(74,222,128,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+.c-item h4{color:var(--accent);font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.c-item p{color:var(--muted);font-size:0.9rem;line-height:1.6;}
+.c-item a{color:var(--muted);text-decoration:none;}
+.c-item a:hover{color:var(--accent);}
+.wa-btn{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:13px 26px;border-radius:10px;font-weight:700;text-decoration:none;transition:.3s;font-size:0.9rem;margin-top:6px;}
+.wa-btn:hover{background:#20bf5a;transform:translateY(-2px);}
+.gmail-btn{display:inline-flex;align-items:center;gap:10px;background:#EA4335;color:#fff;padding:13px 26px;border-radius:10px;font-weight:700;text-decoration:none;transition:.3s;font-size:0.9rem;margin-top:10px;}
+.gmail-btn:hover{background:#c0392b;transform:translateY(-2px);}
+.contact-form{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:34px;}
+.contact-form h3{font-family:'Roboto Slab',serif;color:var(--white);font-size:1.35rem;margin-bottom:22px;}
+.fg{margin-bottom:16px;}
+.fg label{display:block;color:var(--muted);font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;}
+.fg input,.fg select,.fg textarea{width:100%;padding:12px 15px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:'Roboto',sans-serif;font-size:0.92rem;outline:none;transition:border-color .3s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--accent);}
+.fg select option{background:var(--bg1);}
+.fg textarea{resize:vertical;min-height:85px;}
+.submit-btn{width:100%;padding:14px;background:var(--accent);color:#071a0f;border:none;border-radius:8px;font-weight:700;font-size:0.97rem;cursor:pointer;transition:.3s;font-family:'Roboto',sans-serif;}
+.submit-btn:hover{background:var(--accent2);transform:translateY(-1px);}
+
+/* MODALS */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9999;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:36px;max-width:640px;width:90%;max-height:80vh;overflow-y:auto;position:relative;}
+.modal-box h2{font-family:'Roboto Slab',serif;color:var(--white);margin-bottom:20px;font-size:1.4rem;}
+.modal-close{position:absolute;top:16px;right:20px;color:var(--muted);font-size:1.4rem;cursor:pointer;border:none;background:none;}
+.modal-close:hover{color:var(--accent);}
+.modal-box h3{color:var(--accent);font-size:1rem;margin:18px 0 7px;}
+.modal-box p{color:var(--muted);font-size:0.87rem;line-height:1.75;margin-bottom:6px;}
+.modal-box ul{color:var(--muted);font-size:0.87rem;line-height:1.8;padding-left:20px;}
+
+/* FOOTER */
+footer{background:#020a05;padding:28px 5%;border-top:1px solid var(--border);text-align:center;}
+footer p{color:rgba(255,255,255,.3);font-size:0.82rem;}
+footer span{color:var(--accent);}
+.footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:12px;flex-wrap:wrap;}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;transition:.2s;cursor:pointer;}
+.footer-links a:hover{color:var(--accent);}
+
+/* RESPONSIVE */
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr;}.hero-right{grid-template-columns:1fr 1fr;max-width:420px;margin:0 auto;}.about-grid{grid-template-columns:1fr;}.contact-wrap{grid-template-columns:1fr;}.nav-links{display:none;}.hamburger{display:flex;}}
+@media(max-width:480px){.hero-stats{flex-wrap:wrap;gap:20px;}.hero-btns{flex-direction:column;}.btn-green,.btn-outline{text-align:center;}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo-wrap">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCABPAFADASIAAhEBAxEB/8QAGgAAAwEBAQEAAAAAAAAAAAAAAAQFAwIGAf/EAC4QAAIBAwIEBAYCAwAAAAAAAAECAwAEERIhBSIxQRNRYXEGI4GRobEU4TIzQv/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwD0FFFFAUUUvLe28RYM4LADZdycnAHvQMUVmZMah37fagSY15+g+lBpRS63kDOUL6XD6CrbHPb74pigKKKKAoope9maC2Z411PjlGOp60Ct/dv4rQRZUKFdnGTtncDHpWVjAYwrggKoGgI2dfXc5Ge/5pcvbWukXTNhd1AbmbfbIHp50vccdnmYraR6M/8AWNTf1QW5mjhGueRY1x3NEEsVyuu3mST9ivJyBnk13U3MeuTqasy3hS6oXYY6MNjQepu0kLiXYoCCwkOAMb5GBk/evnDbpkdLWTLKVZkc5G2ehz6VJtePTxlRcKJgO/Rh9aaEtteMVtmYeIOZWbmB74z128qD0FFL2U7XFuryLpfuMfb8YpigKn8Wm8JYcjClv8uwPv2/VUKT4iCUTSwBB5gVyCp6+3vQK2kC3CmC8WNyF+WcYZh3PtkgfSkL+wSG0MqTGOMOU0AepFdwyeBfrMAxYfKZCNxnJzt2r4IHuOEugGyT62C5JIx2oI7QOBqXDr5rvQsDsNRwq+bbVRnjgdQYX0uowMZU1OZJnOWV2PsaCnwnhUF6HdpWKocEAYzVG6t0tlENmqKSPmN1ZQeh9tiKw4Er2VpNPc/LiYjGRv1xn81xI/j37THUDJ8oIOuQeu/b1oKPCZfFSXA5Q2NXYnHn3/VUKT4cCI21sCzHIwuAF7Y86coCuJI1kHNnbOK7ooIVpLrlSEshZcqzKMd8bg7jY1nxG2kt7QLbyl+bL6Oo2wOn1qvfSwQR5mXOo4GBvUGe5b+Y0kRjV222U+f90GJlfJGJd3BPKemaaUwrHnwnU45i2dz55rPw5pJQWni1b7kEVzNHcIhMt8rqRgjc0FC2giubG4gXUjybhmOQfL81jNKYh4JZQ5ULqcZ3zjYDc9D+KxS2lZ0aS6QICDpGTj2q9aPFMhkjQhSSQzDqc70GkUaxjlzuBnNaUUUBRRRQJcQsmvYghkCYOQwG9TTwCXO1wD64q/RQQJOB3DJpMwYZzWa/D0uf9mK9HRQQG+Hnkcs9xufSqdjazWkCw+KrovTK4Ipyig+DPevtFFB//9k=" alt="BrightMind Logo" class="logo-img">
+    <span class="logo-text">Bright<span>Mind</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#teachers">Faculty</a></li>
+    <li><a href="#fees">Fees</a></li>
+    <li><a href="#contact" class="nav-cta">Free Demo 🎯</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="toggleMenu()">About Us</a>
+  <a href="#courses" onclick="toggleMenu()">Courses</a>
+  <a href="#teachers" onclick="toggleMenu()">Faculty</a>
+  <a href="#fees" onclick="toggleMenu()">Fees</a>
+  <a href="#contact" onclick="toggleMenu()">Free Demo Class</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-circles"><span></span><span></span></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">⭐ India's Trusted Coaching Center</div>
+      <h1>Apna <em>Sapna</em> Poora Karo<br>Expert Guidance Ke Saath</h1>
+      <p class="hero-sub">From IIT-JEE to Government Exams — we help every student succeed with personalized coaching and expert faculty.</p>
+      <p class="hero-hindi">"मेहनत और सही मार्गदर्शन से हर सपना सच होता है।"</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-green">Free Demo Class Lein →</a>
+        <a href="#courses" class="btn-outline">Courses Dekhein</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">2000+</div><div class="stat-lbl">Students Enrolled</div></div>
+        <div><div class="stat-num">95%</div><div class="stat-lbl">Success Rate</div></div>
+        <div><div class="stat-num">12+</div><div class="stat-lbl">Saal ka Anubhav</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-img-card">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACgcHiMeGSgjISMtKygwPGRBPDc3PHtYXUlkkYCZlo+AjIqgtObDoKrarYqMyP/L2u71////m8H////6/+b9//j/2wBDASstLTw1PHZBQXb4pYyl+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj/wAARCABkAGQDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAIDBAUB/8QALhAAAgIBAgQEBQQDAAAAAAAAAAECAxEEIRIxQVEFE2GBFCJCocEkM3GRsdHh/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAIDAQT/xAAbEQEBAQEBAAMAAAAAAAAAAAAAARECEgMhMf/aAAwDAQACEQMRAD8A7IAAAAAAAAAAAAAAAAAAAAAAAAAAFd18KIpzy23iMUstv0ROc41wlObxGKy2cunW0yslfdxKctlmOVGPRZX3A1/GTjvPS3KPdYf2TNFVsLoKdclKL6ozK+EopxkmujW5TTYoeIwVeytT416rkyZV3mya6IAKQAAAAAAAAAFWpuWnolY1nHJd30QFGq/UW+Qm1CGHNrv0X5/ow3aec7J+XJWcG2WlGWeya/JohdGFLjBt3N7qUWm5Prh9P9EsRoo3y8c+8n/1nj6+Xr00nMc2M5Uzb3WH8yaw/df4Z0PDKnZZPVS5P5Yfx1Znuo86VdT/AHpvdrouvsjsVwjXXGEFiMVhI9HF9TXLbJiQANEAAAAAADyUlCLlJpJLLb6Ea7VZUrMOMXuuLbbuBMz6vnQu9q/Ilr9LGXC74Z9Hkp8Uv8mim6KUuGxNb7PZgWajTV32xnPi4oppcMsGGyUqLpK1WSpracZtZw2uvfBop8RhqK0665ysf0JZx78sFsNLO2SnqZLCeVXHl7vqZXj1+q3HmgpaUtRYsTs5J/THojYAaSZMib9gAOgAAAAAhfTG+mVUm0pLfBmj4bTt5srLscvMm2l7GwAZdVpo/CzjRRW5NYSwlj1IUaZ26WFOopUIQ5RcuLPr6G0ARrrhVHhrgox7JYJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH/2Q==" alt="Pencil">
+        <p>Seekho Aur Likho</p>
+      </div>
+      <div class="hero-img-card">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACgcHiMeGSgjISMtKygwPGRBPDc3PHtYXUlkkYCZlo+AjIqgtObDoKrarYqMyP/L2u71////m8H////6/+b9//j/2wBDASstLTw1PHZBQXb4pYyl+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj/wAARCABkAGQDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAMEBQIB/8QAKBAAAgIBBAICAgEFAAAAAAAAAAECAxEEEiFBMVEiYRNxkQUUIzLh/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAIBA//EABgRAQEBAQEAAAAAAAAAAAAAAAABAhEh/9oADAMBAAIRAxEAPwDXAAAAAAAAAAAAAAAAAAAAAClN3ZjNycZyfxgWrLq6sb5qOTyUU7q7Fl8NceP2bGX1IRz1NMJYlbFP1kparWSlKVVfEVw5dsp4Xoi6XMtyE4zWYSUl7TPTEhKVU1OuTizX09yvpU8Yfhr7Nl6yzitPX/Jqmvcl2yzp7lfUppYecNfZBbKcrXptPtgksyePBPRTGipQjz237DbziQAGpAAAAAFKyp/5rrk+OIrP8FjTxcNLFPztySTgrIOEvDOacqtJxcdvCTecoJk5WHB8OTLK0j2w+bVkllprhfsiuqdF+Xj8e/K56yadkFYuYxnFrxLx+yHZQek1C6rfXDZc/p6ca5wlndnLTWMEjj8Es+Mcs9rSjfx3Hn+f+iMruEZqyyUtvL+OFzj7OwC0AAAAAAAAAAAhnp1KzfGWH6aTON/42q5ww8cbVw19E9k1XW5vozr7J22Za5hykvCI1ZF57VqU4f7Z346XRJTF5dklhvhL0ivZdFUqUZYaksvHJPRa7MxljcucrsSzpZeJgAWgAAAAAAAAAAEGseKUvckUpKW6WI5TXs0rK42wcJeH6K39nNeL+PuBy3m29jpjUk9VYRWZKSam/fos6WSV+1vlxO1ooPLsk5S6a4wd06aFMnJNt9Z6GcWXtNblnImAB1cwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/2Q==" alt="Questions">
+        <p>Sawaal Poochho</p>
+      </div>
+      <div class="hero-img-card">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACgcHiMeGSgjISMtKygwPGRBPDc3PHtYXUlkkYCZlo+AjIqgtObDoKrarYqMyP/L2u71////m8H////6/+b9//j/2wBDASstLTw1PHZBQXb4pYyl+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj/wAARCABkAGQDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAECBAMF/8QAKxAAAwACAQMDAwMFAQAAAAAAAAECAxEEEiExQVFhEzKBcZGhBSJCcrHh/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAECAwT/xAAcEQEBAAMAAwEAAAAAAAAAAAAAAQIRIQMSIlH/2gAMAwEAAhEDEQA/APXAAAAAAAAAAAAAAAAAAAAAAABFUpW34JDSaafhkSumUm969QGSuiHXsSGlS0wAACapbT2gAAAAAAAABE3NeH+CSHEulTXdeoFc2WMON3b0l/PwZLycjJrdViVfbEJb/LZHLt3ytLxiS1/s/X8Ivjd5VFVe5jelrTb8bZzzy01IpOPOu65OSX7U1S/4dcfKuLWPkypddpuftr4+GXKZMc5cdRS2mjnPJZerppqVfZ717e5Jm4GWsnH1b3eNuG/fXqd+uerp3t/B34ysACoAAAAAA2t62tkVKpafgTMz9spfoBkS6Obnl+b6bX6a0RPImuReHTVSt9/U6c6emJzr7sT7/Mvs0Z+Xjl5cFd03fS2np6a9zhnj9Ny8d8uRYsbuu/sl6sRkV4lkXhra2ZvoRk5TindxEptXTfd/+F8reW1xsPZtf3Uv8ZMeu+RXT+nLc5snpeR6/C0bEkvC0UlRgxzCXTErS+C56Z+MUABUAAAAAArXW3qdJe77lgBz5GN5eNkxp96lpP5PKrlLJGJOl1K5emey0mtPweK6+m6w39NzFOVNp9l6dzOWO1l06RlSee6pJO+/f2Rs4GL6eDrvtkyvqe/4X7GHj455GdRGLFKWqq4760/B69yrlp/v7EmOlt2kJKVpLSE70urW/XQNsgAAAAAAAAAAGTlcFZr+pjai393nT+e3qawBx4vGjjY+mW233qn5bOwAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/9k=" alt="Ideas">
+        <p>Naye Ideas Seekho</p>
+      </div>
+      <div class="hero-img-card">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACgcHiMeGSgjISMtKygwPGRBPDc3PHtYXUlkkYCZlo+AjIqgtObDoKrarYqMyP/L2u71////m8H////6/+b9//j/2wBDASstLTw1PHZBQXb4pYyl+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj/wAARCABkAGQDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAMEBQIB/8QALxAAAgICAQIEBAUFAQAAAAAAAAECAwQREiExEyJBUQVxgZEUQmHB8BVSU2Ohsf/EABcBAQEBAQAAAAAAAAAAAAAAAAABAgP/xAAdEQEBAQEAAgMBAAAAAAAAAAAAARECITEDQWFx/9oADAMBAAIRAxEAPwDZAAAAAAAAAAAAAAAAAAAASXKLT9egEORGU61Kuzjxe+/RkV9lN8Ywc2o8k98Xp/U9nTCmuMU5cHNck3vp/NEFs3ymlFeXvv8AY5993lrmauSyIQthV1cpe3oSlOnIhTTFT5d2k0t+pcNy6yAq51d0q1OiyUZR/KnrZmwzslLpa380mUbgMiPxO9d1CX00aWPfDIrU4fVezAlAAAAAAABBHHqpjZKXm5J7b69PYqShJ0K+uLcevl3tpb9/VGkNdCXmX2suKPw+a89UtPryj67R0s9zlJU0TsjF62j2UMbCs8RtpzWkur6FCjJeLzjCHiRlLafYfxFy3Ittg63TOlT8rnLsjJnCVU3GS013Ren8SlKLjKhaf6lbx4z8ttTcfR+qJtn0vhFslx7549qnD6r3RxZVDSddikn6Poyx8Pwle5yt3wXRafdmpZUzGvTdC+tTg+j/AOHZVwcaFMHOMpebum+nctAAAAAAAj8aPLXXjvXL02eZD1FN74b82u5TyLHZutrjDtxX86/+E66nM2rJrvNhJZVFyhKUY9+K2cv4jR/bL7I5pyJWYt1G92Ri+On3RHiSw1jQV3Dn13tde4vkzHtudVKUGlLpv0Ry82l91J/Qn5fD/wDX9hzwPaozkVBG2uzrGqySXtHZexHxwluMocU+6GC6nCzwuOub7Fk1JjKvgScsZbe2m0WAkl2BQAAAAAGlJNNbTM3OrsioxWuCWk13f6M0jmyEbIOEltMlmrLl1gSX5o9PkXMfGxb6+T5KX5ly9SO+mVNri+v7/qdU4cVdV4yTU20o/Qn46/Jlmu8jBx68eycW+UVteYpJR8DbgtqWtmx/T8X/AAr7s9/AY2teEtfNmo4WayKWvEUeOk97037GxgzlPDrlJ7eu7+Z4sDGXapfdk8YqEVGKSS6JIX2SY9AAUAAAAAAABzOuFmuS3rs/VFZ4K/EwuVstxfaXUtgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z" alt="Education">
+        <p>Padhai Mein Aage Baro</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about reveal" id="about">
+  <span class="sec-tag">Hamare Baare Mein</span>
+  <h2 class="sec-title">BrightMind Kyu Choose Karein?</h2>
+  <p class="sec-sub">Hum sirf padhai nahi, ek ujjwal future banate hain. Har student ka sapna hamare liye khaas hai.</p>
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <img src="data:image/jpeg;base64,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" alt="Student studying" class="about-main-img">
+      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACgcHiMeGSgjISMtKygwPGRBPDc3PHtYXUlkkYCZlo+AjIqgtObDoKrarYqMyP/L2u71////m8H////6/+b9//j/2wBDASstLTw1PHZBQXb4pYyl+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj/wAARCABkAGQDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAECBAMF/8QAKxAAAwACAQMDAwMFAQAAAAAAAAECAxEEEiExQVFhEzKBcZGhBSJCcrHh/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAECAwT/xAAcEQEBAAMAAwEAAAAAAAAAAAAAAQIRIQMSIlH/2gAMAwEAAhEDEQA/APXAAAAAAAAAAAAAAAAAAAAAAABFUpW34JDSaafhkSumUm969QGSuiHXsSGlS0wAACapbT2gAAAAAAAABE3NeH+CSHEulTXdeoFc2WMON3b0l/PwZLycjJrdViVfbEJb/LZHLt3ytLxiS1/s/X8Ivjd5VFVe5jelrTb8bZzzy01IpOPOu65OSX7U1S/4dcfKuLWPkypddpuftr4+GXKZMc5cdRS2mjnPJZerppqVfZ717e5Jm4GWsnH1b3eNuG/fXqd+uerp3t/B34ysACoAAAAAA2t62tkVKpafgTMz9spfoBkS6Obnl+b6bX6a0RPImuReHTVSt9/U6c6emJzr7sT7/Mvs0Z+Xjl5cFd03fS2np6a9zhnj9Ny8d8uRYsbuu/sl6sRkV4lkXhra2ZvoRk5TindxEptXTfd/+F8reW1xsPZtf3Uv8ZMeu+RXT+nLc5snpeR6/C0bEkvC0UlRgxzCXTErS+C56Z+MUABUAAAAAArXW3qdJe77lgBz5GN5eNkxp96lpP5PKrlLJGJOl1K5emey0mtPweK6+m6w39NzFOVNp9l6dzOWO1l06RlSee6pJO+/f2Rs4GL6eDrvtkyvqe/4X7GHj455GdRGLFKWqq4760/B69yrlp/v7EmOlt2kJKVpLSE70urW/XQNsgAAAAAAAAAAGTlcFZr+pjai393nT+e3qawBx4vGjjY+mW233qn5bOwAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/9k=" alt="Idea" class="about-badge-img">
+    </div>
+    <div>
+      <div class="about-point"><span class="about-point-icon">🎯</span><div><h4>Focused Learning / केंद्रित पढ़ाई</h4><p>Har student par personal dhyan. Chhote batches mein padhai taaki koi peeche na rahe.</p></div></div>
+      <div class="about-point"><span class="about-point-icon">👨‍🏫</span><div><h4>Expert Faculty / माहिर शिक्षक</h4><p>IIT, NIT aur AIIMS graduates se seekho. Hamare teachers ne khud yeh exams crack kiye hain.</p></div></div>
+      <div class="about-point"><span class="about-point-icon">📊</span><div><h4>Regular Tests / नियमित टेस्ट</h4><p>Weekly mock tests aur daily practice se exam ki taiyari pakki hogi.</p></div></div>
+      <div class="about-point"><span class="about-point-icon">💡</span><div><h4>Doubt Sessions / शंका समाधान</h4><p>Koi bhi sawaal chhota nahi hota. Daily doubt clearing sessions mein sab clear karo.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section class="courses reveal" id="courses">
+  <div class="courses-hdr">
+    <span class="sec-tag">Our Courses / Hamare Courses</span>
+    <h2 class="sec-title">Kaunsa Course Aapke Liye?</h2>
+    <p class="sec-sub">Sabse mushkil exams crack karne ke liye expert-designed programs.</p>
+  </div>
+  <div class="courses-grid">
+    <div class="course-card"><div class="c-icon">🔬</div><h3>IIT-JEE Preparation</h3><p>Physics, Chemistry & Maths ki gehri preparation. Daily tests aur doubt sessions ke saath.</p><span class="course-tag">2 Saal ka Program</span></div>
+    <div class="course-card"><div class="c-icon">🩺</div><h3>NEET Medical</h3><p>Biology, Physics & Chemistry — NCERT se aage. Mock test series included.</p><span class="course-tag">1 Saal ka Program</span></div>
+    <div class="course-card"><div class="c-icon">📋</div><h3>Sarkari Naukri / Govt Exams</h3><p>SSC, Railway, Bank PO, Police, UPSC — GK aur reasoning sab yahan.</p><span class="course-tag">6 Mahine ka Program</span></div>
+    <div class="course-card"><div class="c-icon">📐</div><h3>Class 10th & 12th Boards</h3><p>Board exam mein top karo. Notes, revision aur exam strategy ke saath.</p><span class="course-tag">Board Exam Prep</span></div>
+    <div class="course-card"><div class="c-icon">💼</div><h3>Commerce & CA Foundation</h3><p>Accounts, Economics, Business Studies aur CA Foundation.</p><span class="course-tag">1 Saal ka Program</span></div>
+    <div class="course-card"><div class="c-icon">💻</div><h3>Computer Science</h3><p>Python, C++ aur Data Structures — boards aur competitive exams ke liye.</p><span class="course-tag">3 Mahine ka Program</span></div>
+  </div>
+</section>
+
+<!-- TEACHERS -->
+<section class="teachers reveal" id="teachers">
+  <span class="sec-tag">Faculty / Hamare Shikshak</span>
+  <h2 class="sec-title">Miliye Apne Mentors Se</h2>
+  <p class="sec-sub">IIT, NIT aur top university graduates jo aapko success tak le jaayenge.</p>
+  <div class="teachers-grid">
+    <div class="teacher-card"><div class="t-avatar">R</div><h3>Rahul Sharma Sir</h3><div class="t-sub">Physics & Maths</div><div class="t-exp">IIT Delhi • 10 Saal Anubhav</div></div>
+    <div class="teacher-card"><div class="t-avatar">P</div><h3>Priya Verma Mam</h3><div class="t-sub">Biology & Chemistry</div><div class="t-exp">AIIMS Qualified • 8 Saal Anubhav</div></div>
+    <div class="teacher-card"><div class="t-avatar">A</div><h3>Amit Kumar Sir</h3><div class="t-sub">GK & Current Affairs</div><div class="t-exp">UPSC Expert • 12 Saal Anubhav</div></div>
+    <div class="teacher-card"><div class="t-avatar">S</div><h3>Sunita Joshi Mam</h3><div class="t-sub">English & Commerce</div><div class="t-exp">MBA Gold Medalist • 7 Saal Anubhav</div></div>
+  </div>
+</section>
+
+<!-- FEES -->
+<section class="fees reveal" id="fees">
+  <div class="fees-hdr">
+    <span class="sec-tag">Fees / Daam</span>
+    <h2 class="sec-title">Affordable Fees, Best Education</h2>
+    <p class="sec-sub">Sabse affordable fees mein best education. EMI option bhi available hai!</p>
+  </div>
+  <div class="fees-grid">
+    <div class="fee-card"><h3>Basic Batch</h3><div class="fee-price">₹2,500</div><div class="fee-per">per month</div><ul class="fee-list"><li>3 Subjects Included</li><li>Morning Batch (7–9 AM)</li><li>Weekly Test Series</li><li>Study Material</li><li>Doubt Class (2/week)</li></ul><a href="#contact" class="fee-btn">Enroll Karein</a></div>
+    <div class="fee-card hot"><div class="hot-label">⭐ Sabse Popular</div><h3>Standard Batch</h3><div class="fee-price">₹4,000</div><div class="fee-per">per month</div><ul class="fee-list"><li>Sabhi Subjects Included</li><li>Morning + Evening Batch</li><li>Daily Test Series</li><li>Premium Study Material</li><li>Daily Doubt Sessions</li><li>Online Video Lectures</li></ul><a href="#contact" class="fee-btn">Enroll Karein</a></div>
+    <div class="fee-card"><h3>Crash Course</h3><div class="fee-price">₹6,000</div><div class="fee-per">one time</div><ul class="fee-list"><li>45 Din ka Program</li><li>Exam-Focused Syllabus</li><li>Roz Mock Tests</li><li>Previous Year Papers</li><li>Personal Mentoring</li></ul><a href="#contact" class="fee-btn">Enroll Karein</a></div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results reveal" id="results">
+  <span class="sec-tag">Hamare Results</span>
+  <h2 class="sec-title">Humari Safalta Bolti Hai</h2>
+  <p class="sec-sub" style="margin:0 auto">Numbers jhuthe nahi hote — hamare students ki mehnat ke saboot.</p>
+  <div class="results-grid">
+    <div class="res-card"><div class="res-num">500+</div><div class="res-lbl">IIT-JEE Selections</div></div>
+    <div class="res-card"><div class="res-num">800+</div><div class="res-lbl">NEET Qualifiers</div></div>
+    <div class="res-card"><div class="res-num">1200+</div><div class="res-lbl">Govt Job Selections</div></div>
+    <div class="res-card"><div class="res-num">95%</div><div class="res-lbl">Board Pass Rate</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact reveal" id="contact">
+  <span class="sec-tag">Contact / Sampark</span>
+  <h2 class="sec-title">Aaj Hi Free Demo Lein! 🎯</h2>
+  <p class="sec-sub">Pehli class bilkul FREE hai. Aao, dekho, aur faisla karo!</p>
+  <div class="contact-wrap">
+    <div>
+      <div class="c-item"><div class="c-icon">📍</div><div><h4>Pata / Address</h4><p>123, Main Market, Near Bus Stand<br>Jaipur, Rajasthan – 302001</p></div></div>
+      <div class="c-item"><div class="c-icon">📞</div><div><h4>Phone / WhatsApp</h4><p><a href="tel:+918218171090">+91 82181 71090</a></p></div></div>
+      <div class="c-item"><div class="c-icon">⏰</div><div><h4>Batch Timing</h4><p>Subah: 6 AM – 9 AM | Shaam: 4 PM – 7 PM</p></div></div>
+      <div class="c-item"><div class="c-icon">📧</div><div><h4>Gmail</h4><p><a href="/cdn-cgi/l/email-protection#e58d8a8b809c8e8d8491978cd4d2d4a58288848c89cb868a88"><span class="__cf_email__" data-cfemail="82eaedece7fbe9eae3f6f0ebb3b5b3c2e5efe3ebeeace1edef">[email&#160;protected]</span></a></p></div></div>
+      <a href="https://wa.me/918218171090?text=Hello%20BrightMind!%20Mujhe%20coaching%20ke%20baare%20mein%20jaanna%20hai." class="wa-btn" target="_blank" rel="noopener noreferrer">💬 WhatsApp Par Baat Karein</a><br>
+      <a href="/cdn-cgi/l/email-protection#e98186878c908281889d9b80d8ded8a98e84888085c78a8684" class="gmail-btn">📧 Gmail Par Email Karein</a>
+    </div>
+    <div class="contact-form">
+      <h3>Free Demo Class Book Karein</h3>
+      <div class="fg"><label>Student Ka Naam</label><input type="text" placeholder="Apna naam likhein..."></div>
+      <div class="fg"><label>Phone Number</label><input type="tel" placeholder="+91 XXXXX XXXXX"></div>
+      <div class="fg"><label>Course Chuniye</label>
+        <select>
+          <option>IIT-JEE Preparation</option>
+          <option>NEET Medical</option>
+          <option>Sarkari Naukri / Govt Exams</option>
+          <option>Class 10th & 12th Boards</option>
+          <option>Commerce & CA Foundation</option>
+          <option>Computer Science</option>
+        </select>
+      </div>
+      <div class="fg"><label>Message (Optional)</label><textarea placeholder="Koi bhi sawaal ho toh likhein..."></textarea></div>
+      <button class="submit-btn" onclick="submitForm()">Submit Karein → Free Demo Book Ho Jaayega! 🎯</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#courses">Courses</a>
+    <a href="#contact">Contact</a>
+    <a onclick="openPrivacy()">Privacy Policy</a>
+    <a onclick="openTerms()">Terms & Conditions</a>
+  </div>
+  <p>© 2024 <span>BrightMind Coaching Center</span> • Jaipur, Rajasthan • All Rights Reserved</p>
+  <p style="margin-top:6px">📞 <span>+91 82181 71090</span> &nbsp;|&nbsp; 📧 <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e0888f8e85998b8881949289d1d7d1a0878d81898cce838f8d">[email&#160;protected]</a></span></p>
+</footer>
+
+<!-- PRIVACY MODAL -->
+<div class="modal-overlay" id="privacyModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('privacyModal')">✕</button>
+    <h2>🔒 Privacy Policy</h2>
+    <h3>1. Information We Collect</h3>
+    <p>Jab aap hamare contact form fill karte hain, hum aapka naam, phone number aur course preference collect karte hain. Yeh sirf coaching ke baare mein contact karne ke liye use hoti hai.</p>
+    <h3>2. How We Use Your Info</h3>
+    <p>Aapki information ka use sirf demo class ke liye contact karna, course details share karna, aur WhatsApp/Gmail ke zariye jawab dene ke liye hota hai.</p>
+    <h3>3. Data Security</h3>
+    <p>Aapka data hamesha safe rakha jaata hai. Hum aapki personal information kisi third party ke saath share nahi karte.</p>
+    <h3>4. Contact</h3>
+    <p>Privacy sawaal ke liye: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0e6661606b7765666f7a7c673f393f4e69636f6762206d6163">[email&#160;protected]</a></strong> | <strong>+91 82181 71090</strong></p>
+  </div>
+</div>
+
+<!-- TERMS MODAL -->
+<div class="modal-overlay" id="termsModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('termsModal')">✕</button>
+    <h2>📋 Terms & Conditions</h2>
+    <h3>1. Admission</h3>
+    <p>Dakhile ke liye ek free demo class mandatory hai. Demo ke baad hi final admission hoga.</p>
+    <h3>2. Fees & Payment</h3>
+    <p>Fees advance mein bhari jaati hai. Fees refundable nahi hai agar student khud cancel kare. Installment ki suvidha available hai.</p>
+    <h3>3. Attendance</h3>
+    <p>75% se kam haazri par exam form nahi bhara jaayega.</p>
+    <h3>4. Behavior</h3>
+    <p>Sabhi students se respectful behavior expect kiya jaata hai.</p>
+    <h3>5. Contact</h3>
+    <p><strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1a7275747f6371727b6e68732b2d2b5a7d777b737634797577">[email&#160;protected]</a></strong> | <strong>+91 82181 71090</strong></p>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{thre
